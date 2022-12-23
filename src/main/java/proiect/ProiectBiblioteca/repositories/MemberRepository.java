@@ -1,0 +1,17 @@
+package proiect.ProiectBiblioteca.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import proiect.ProiectBiblioteca.entity.Member;
+
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface MemberRepository extends JpaRepository<Member, Long> {
+
+    List<Member> findMemberByEmail(String email);
+
+    @Override
+    Optional<Member> findById(Long id);
+}
