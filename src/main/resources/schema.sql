@@ -10,3 +10,21 @@ CREATE TABLE IF NOT EXISTS member (
     PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS borrowedBooks (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    date_due DATETIME,
+    date_returned DATETIME,
+
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS member_borrowedBooks (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    member BIGINT NOT NULL,
+    borrowedBooks BIGINT NOT NULL,
+
+    PRIMARY KEY (id),
+    FOREIGN KEY (member) REFERENCES member(id),
+    FOREIGN KEY (borrowedBooks) REFERENCES borrowedBooks(id)
+);
+
