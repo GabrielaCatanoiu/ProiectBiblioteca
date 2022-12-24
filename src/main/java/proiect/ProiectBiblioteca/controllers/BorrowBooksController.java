@@ -19,8 +19,8 @@ import static proiect.ProiectBiblioteca.constants.ProjectConstants.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/borrowedBooks")
-public class BorrowedBooksController {
+@RequestMapping("/borrowBooks")
+public class BorrowBooksController {
 
     @Autowired
     private BorrowedBooksService borrowedBooksService;
