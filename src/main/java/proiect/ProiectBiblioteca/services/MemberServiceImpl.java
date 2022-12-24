@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface MemberServiceImpl {
 
     public MemberDTO addMember(MemberDTO memberDTO);
+    public List<Member> getAllMembers();
     public List<MemberDTO> getByEmail(String email);
     public Optional<Member> getMember(Long id);
     public void deleteMember(Long id);

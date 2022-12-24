@@ -14,7 +14,7 @@ import javax.persistence.Column;
 public class MemberDTO {
 
     private Long id;
-    private String name;
+    private String m_name;
     private String surname;
     private String address;
     private String city;

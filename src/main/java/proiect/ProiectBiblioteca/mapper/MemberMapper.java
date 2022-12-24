@@ -10,7 +10,7 @@ public class MemberMapper {
     public Member mapToMember(MemberDTO memberDTO)
     {
         return Member.builder()
-                .name(memberDTO.getName())
+                .m_name(memberDTO.getM_name())
                 .surname(memberDTO.getSurname())
                 .address(memberDTO.getAddress())
                 .city(memberDTO.getCity())
@@ -23,9 +23,12 @@ public class MemberMapper {
     {
         return MemberDTO.builder()
                 .id(member.getId())
-                .name(member.getName())
+                .m_name(member.getM_name())
                 .surname(member.getSurname())
+                .address(member.getAddress())
+                .city(member.getCity())
                 .email(member.getEmail())
+                .phone(member.getPhone())
                 .build();
     }
 }
