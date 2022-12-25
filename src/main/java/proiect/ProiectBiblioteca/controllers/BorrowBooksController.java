@@ -19,7 +19,7 @@ import static proiect.ProiectBiblioteca.constants.ProjectConstants.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/borrowBooks")
+@RequestMapping("/borrowed_books")
 public class BorrowBooksController {
 
     @Autowired
@@ -38,7 +38,7 @@ public class BorrowBooksController {
     }
 
     @GetMapping("/getByDate/{date_due}")
-    public ResponseEntity<List<BorrowedBooksDTO>> getAllBorrowedBookByDate(@PathVariable Date date_due)
+    public ResponseEntity<List<BorrowedBooksDTO>> getAllBorrowedBookByDate(@PathVariable String date_due)
     {
         return ResponseEntity.ok(borrowedBooksService.getBorrowedBookByDate(date_due));
     }
@@ -65,7 +65,7 @@ public class BorrowBooksController {
     }
 
     @PutMapping("/update/{id}/{date_returned}")
-    public ResponseEntity<BorrowedBooksDTO> updateBorrowedBook(@PathVariable Long id, @PathVariable Date date_returned)
+    public ResponseEntity<BorrowedBooksDTO> updateBorrowedBook(@PathVariable Long id, @PathVariable String date_returned)
     {
         return ResponseEntity.ok(borrowedBooksService.updateBorrowedBook(id,date_returned));
     }

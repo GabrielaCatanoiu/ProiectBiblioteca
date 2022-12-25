@@ -13,7 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "borrowedBooks")
+@Table(name = "borrowed_books")
 public class BorrowedBooks {
 
     @Id
@@ -23,18 +23,18 @@ public class BorrowedBooks {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinTable(name = "member_borrowedBooks",
             joinColumns = {
-                    @JoinColumn(name = "member", referencedColumnName = "id")
+                    @JoinColumn(name = "borrowedBooks", referencedColumnName = "id")
             },
             inverseJoinColumns = {
-                    @JoinColumn(name = "borrowedBooks", referencedColumnName = "id")
+                    @JoinColumn(name = "member", referencedColumnName = "id")
             }
     )
     private Member member;
 
     @Column(name = "date_due")
-    private Date date_due;
+    private String date_due;
 
     @Column(name = "date_returned")
-    private Date date_returned;
+    private String date_returned;
 
 }

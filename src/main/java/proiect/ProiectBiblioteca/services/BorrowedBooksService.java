@@ -5,10 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proiect.ProiectBiblioteca.dto.BorrowedBooksDTO;
 import proiect.ProiectBiblioteca.entity.BorrowedBooks;
+import proiect.ProiectBiblioteca.entity.Member;
 import proiect.ProiectBiblioteca.exceptions.BorrowedBookNotFoundException;
 import proiect.ProiectBiblioteca.exceptions.MemberNotFoundException;
 import proiect.ProiectBiblioteca.mapper.BorrowedBooksMapper;
 import proiect.ProiectBiblioteca.repositories.BorrowedBooksRepository;
+import proiect.ProiectBiblioteca.repositories.MemberRepository;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,6 +30,9 @@ public class BorrowedBooksService implements BorrowedBooksServiceImpl{
     @Autowired
     private BorrowedBooksMapper borrowedBooksMapper;
 
+    @Autowired
+    private MemberRepository memberRepository;
+
     public List<BorrowedBooks> getAllBorrowedBooks()
     {
         List<BorrowedBooks> allBorrowedBooks = new ArrayList<>();
@@ -43,7 +48,7 @@ public class BorrowedBooksService implements BorrowedBooksServiceImpl{
         return borrowedBooksRepository.findById(id);
     }
 
-    public List<BorrowedBooksDTO> getBorrowedBookByDate(Date date_due)
+    public List<BorrowedBooksDTO> getBorrowedBookByDate(String date_due)
     {
         List<BorrowedBooksDTO> borrowedBooksDTOS = borrowedBooksRepository.findAllByDate_due(date_due).stream()
                 .map(barrow ->borrowedBooksMapper.mapToBorrowedBooksDTO(barrow)).collect(Collectors.toList());
@@ -56,7 +61,19 @@ public class BorrowedBooksService implements BorrowedBooksServiceImpl{
 
     public BorrowedBooksDTO addBorrowedBook(BorrowedBooksDTO borrowedBooksDTO)
     {
-        return borrowedBooksMapper.mapToBorrowedBooksDTO(borrowedBooksRepository.save(borrowedBooksMapper.mapToBorrowedBooks(borrowedBooksDTO)));
+        BorrowedBooks borrowedBooks = borrowedBooksMapper.mapToBorrowedBooks(borrowedBooksDTO);
+        if(borrowedBooksDTO.getMemberDTO() != null)
+        {
+            Optional<Member> member = memberRepository.findById(borrowedBooksDTO.getMemberDTO().getId());
+            System.out.println(member);
+            if(member.isEmpty())
+            {
+                throw new MemberNotFoundException(String.format(MEMBER_NOT_FOUND,borrowedBooks.getMember()));
+            }
+            borrowedBooks.setMember(member.get());
+        }
+        System.out.println(borrowedBooks);
+        return borrowedBooksMapper.mapToBorrowedBooksDTO(borrowedBooksRepository.save(borrowedBooks));
     }
 
     public void deleteBorrowedBook(Long id)
@@ -72,7 +89,7 @@ public class BorrowedBooksService implements BorrowedBooksServiceImpl{
         }
     }
 
-    public BorrowedBooksDTO updateBorrowedBook(Long id, Date newDate_returned)
+    public BorrowedBooksDTO updateBorrowedBook(Long id, String newDate_returned)
     {
         BorrowedBooks borrowedBooks = borrowedBooksRepository.getReferenceById(id);
         if(borrowedBooks==null)

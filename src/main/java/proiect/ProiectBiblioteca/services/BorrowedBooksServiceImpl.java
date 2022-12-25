@@ -11,8 +11,8 @@ public interface BorrowedBooksServiceImpl {
 
     public List<BorrowedBooks> getAllBorrowedBooks();
     public Optional<BorrowedBooks> getBorrowedBook(Long id);
-    public List<BorrowedBooksDTO> getBorrowedBookByDate(Date date_due);
+    public List<BorrowedBooksDTO> getBorrowedBookByDate(String date_due);
     public BorrowedBooksDTO addBorrowedBook(BorrowedBooksDTO borrowedBooksDTO);
     public void deleteBorrowedBook(Long id);
-    public BorrowedBooksDTO updateBorrowedBook(Long id, Date newDate_returned);
+    public BorrowedBooksDTO updateBorrowedBook(Long id, String newDate_returned);
 }

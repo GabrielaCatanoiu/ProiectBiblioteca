@@ -1,20 +1,20 @@
 package proiect.ProiectBiblioteca.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
 @Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class BorrowedBooksDTO {
 
     private Long id;
-    private Date date_due;
-    private Date date_returned;
+    private String date_due;
+    private String date_returned;
+    private MemberDTO memberDTO;
 
 }

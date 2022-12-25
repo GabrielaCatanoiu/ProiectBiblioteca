@@ -17,5 +17,5 @@ public interface BorrowedBooksRepository extends JpaRepository<BorrowedBooks, Lo
     @Override
     Optional<BorrowedBooks> findById(Long id);
     @Query("SELECT B FROM BorrowedBooks B WHERE B.date_due = :date_due")
-    List<BorrowedBooks> findAllByDate_due(Date date_due);
+    List<BorrowedBooks> findAllByDate_due(String date_due);
 }
