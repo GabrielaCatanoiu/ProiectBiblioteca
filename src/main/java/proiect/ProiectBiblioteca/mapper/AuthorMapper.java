@@ -10,7 +10,6 @@ public class AuthorMapper {
     public Author mapToAuthor(AuthorDTO authorDTO)
     {
         return Author.builder()
-                .id(authorDTO.getId())
                 .author_name(authorDTO.getAuthor_name())
                 .author_surname(authorDTO.getAuthor_surname())
                 .date_birth(authorDTO.getDate_birth())

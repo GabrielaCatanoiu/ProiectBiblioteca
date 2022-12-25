@@ -24,7 +24,7 @@ public class Author {
     @Column(name = "author_surname")
     private String author_surname;
 
-    @Column(name = "date_birt")
+    @Column(name = "date_birth")
     private String date_birth;
 
     @Column(name = "date_death")

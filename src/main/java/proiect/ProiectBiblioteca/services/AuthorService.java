@@ -55,7 +55,7 @@ public class AuthorService implements AuthorServiceImpl{
     public List<Author> getAllAuthors()
     {
         List<Author> authors = new ArrayList<>();
-        for (int i=0; i<=authorRepository.findAll().size();i++)
+        for (int i=0; i<authorRepository.findAll().size();i++)
         {
             authors.add(authorRepository.findAll().get(i));
         }
