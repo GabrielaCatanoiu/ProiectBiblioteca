@@ -37,3 +37,12 @@ CREATE TABLE IF NOT EXISTS author (
 
     PRIMARY KEY (id)
 );
+
+CREATE TABLE IF NOT EXISTS city (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    city_name VARCHAR(255) NOT NULL,
+    country VARCHAR(255) NOT NULL,
+    district VARCHAR(255) NOT NULL,
+
+    PRIMARY KEY (id)
+);
