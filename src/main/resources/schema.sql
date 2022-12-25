@@ -28,3 +28,12 @@ CREATE TABLE IF NOT EXISTS member_borrowed_books (
     FOREIGN KEY (borrowed_books) REFERENCES borrowed_books(id)
 );
 
+CREATE TABLE IF NOT EXISTS author (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    author_name VARCHAR(255) NOT NULL,
+    author_surname VARCHAR(255) NOT NULL,
+    date_birt VARCHAR(255) NOT NULL,
+    date_death VARCHAR(255),
+
+    PRIMARY KEY (id)
+);

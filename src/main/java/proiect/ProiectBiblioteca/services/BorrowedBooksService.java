@@ -33,6 +33,7 @@ public class BorrowedBooksService implements BorrowedBooksServiceImpl{
     @Autowired
     private MemberRepository memberRepository;
 
+    @Override
     public List<BorrowedBooks> getAllBorrowedBooks()
     {
         List<BorrowedBooks> allBorrowedBooks = new ArrayList<>();
@@ -43,11 +44,13 @@ public class BorrowedBooksService implements BorrowedBooksServiceImpl{
         return allBorrowedBooks;
     }
 
+    @Override
     public Optional<BorrowedBooks> getBorrowedBook(Long id)
     {
         return borrowedBooksRepository.findById(id);
     }
 
+    @Override
     public List<BorrowedBooksDTO> getBorrowedBookByDate(String date_due)
     {
         List<BorrowedBooksDTO> borrowedBooksDTOS = borrowedBooksRepository.findAllByDate_due(date_due).stream()
@@ -59,6 +62,7 @@ public class BorrowedBooksService implements BorrowedBooksServiceImpl{
         return borrowedBooksDTOS;
     }
 
+    @Override
     public BorrowedBooksDTO addBorrowedBook(BorrowedBooksDTO borrowedBooksDTO)
     {
         BorrowedBooks borrowedBooks = borrowedBooksMapper.mapToBorrowedBooks(borrowedBooksDTO);
@@ -76,6 +80,7 @@ public class BorrowedBooksService implements BorrowedBooksServiceImpl{
         return borrowedBooksMapper.mapToBorrowedBooksDTO(borrowedBooksRepository.save(borrowedBooks));
     }
 
+    @Override
     public void deleteBorrowedBook(Long id)
     {
         Optional<BorrowedBooks> borrowedBooksFound = borrowedBooksRepository.findById(id);
@@ -89,6 +94,7 @@ public class BorrowedBooksService implements BorrowedBooksServiceImpl{
         }
     }
 
+    @Override
     public BorrowedBooksDTO updateBorrowedBook(Long id, String newDate_returned)
     {
         BorrowedBooks borrowedBooks = borrowedBooksRepository.getReferenceById(id);
