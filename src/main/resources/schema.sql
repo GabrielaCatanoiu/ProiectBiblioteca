@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS city_publishing_house (
 
 CREATE TABLE IF NOT EXISTS book (
     id BIGINT NOT NULL AUTO_INCREMENT,
-    title VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL UNIQUE,
     year_published VARCHAR(255) NOT NULL,
 
     PRIMARY KEY (id)

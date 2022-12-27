@@ -4,9 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proiect.ProiectBiblioteca.dto.BookDTO;
+import proiect.ProiectBiblioteca.entity.Author;
 import proiect.ProiectBiblioteca.entity.Book;
+import proiect.ProiectBiblioteca.exceptions.AuthorNotFoundException;
 import proiect.ProiectBiblioteca.exceptions.BookNotFoundException;
 import proiect.ProiectBiblioteca.mapper.BookMapper;
+import proiect.ProiectBiblioteca.repositories.AuthorRepository;
 import proiect.ProiectBiblioteca.repositories.BookRepository;
 
 import java.util.ArrayList;
@@ -14,8 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static proiect.ProiectBiblioteca.constants.ProjectConstants.BOOK_ID_NOT_FOUND;
-import static proiect.ProiectBiblioteca.constants.ProjectConstants.BOOK_NOT_FOUND;
+import static proiect.ProiectBiblioteca.constants.ProjectConstants.*;
 
 @Service
 @RequiredArgsConstructor
@@ -27,10 +29,23 @@ public class BookService implements BookServiceImpl {
     @Autowired
     private BookRepository bookRepository;
 
+    @Autowired
+    private AuthorRepository authorRepository;
+
     @Override
     public BookDTO addBook(BookDTO bookDTO)
     {
-        return bookMapper.mapToBookDTO(bookRepository.save(bookMapper.mapToBook(bookDTO)));
+        Book book = bookMapper.mapToBook(bookDTO);
+        if(bookDTO.getAuthorDTO() != null)
+        {
+            Optional<Author> author = authorRepository.findById(bookDTO.getAuthorDTO().getId());
+            if (author.isEmpty())
+            {
+                throw new AuthorNotFoundException(String.format(AUTHOR_NOT_FOUND,book.getAuthor()));
+            }
+            book.setAuthor(author.get());
+        }
+        return bookMapper.mapToBookDTO(bookRepository.save(book));
     }
 
     @Override

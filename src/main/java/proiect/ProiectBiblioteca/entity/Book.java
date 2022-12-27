@@ -18,6 +18,17 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinTable(name = "author_book",
+            joinColumns = {
+                    @JoinColumn(name = "book", referencedColumnName = "id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "author", referencedColumnName = "id")
+            }
+    )
+    private Author author;
+
     @Column(name = "title")
     private String title;
 
