@@ -81,3 +81,10 @@ CREATE TABLE IF NOT EXISTS author_book (
     FOREIGN KEY (book) REFERENCES book(id),
     FOREIGN KEY (author) REFERENCES author(id)
 );
+
+CREATE TABLE IF NOT EXISTS literature_category (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    category_name VARCHAR(255) NOT NULL,
+
+    PRIMARY KEY (id)
+);
