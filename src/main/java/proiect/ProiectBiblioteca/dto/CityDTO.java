@@ -17,5 +17,4 @@ public class CityDTO {
     private String city_name;
     private String country;
     private String  district;
-    private PublishingHouseDTO publishingHouseDTO;
 }

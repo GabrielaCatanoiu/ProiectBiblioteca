@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS city (
 
 CREATE TABLE IF NOT EXISTS publishing_house (
     id BIGINT NOT NULL AUTO_INCREMENT,
-    publishing_name VARCHAR(255) NOT NULL,
+    publishing_name VARCHAR(255) NOT NULL UNIQUE,
 
     PRIMARY KEY (id)
 );
@@ -58,7 +58,6 @@ CREATE TABLE IF NOT EXISTS city_publishing_house (
     id BIGINT NOT NULL AUTO_INCREMENT,
     publishing_house BIGINT NOT NULL,
     city BIGINT NOT NULL,
-
 
     PRIMARY KEY (id),
     FOREIGN KEY (publishing_house) REFERENCES publishing_house(id),
@@ -71,4 +70,14 @@ CREATE TABLE IF NOT EXISTS book (
     year_published VARCHAR(255) NOT NULL,
 
     PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS author_book (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    book BIGINT NOT NULL,
+    author BIGINT NOT NULL,
+
+    PRIMARY KEY (id),
+    FOREIGN KEY (book) REFERENCES book(id),
+    FOREIGN KEY (author) REFERENCES author(id)
 );

@@ -4,9 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proiect.ProiectBiblioteca.dto.PublishingHouseDTO;
+import proiect.ProiectBiblioteca.entity.City;
 import proiect.ProiectBiblioteca.entity.PublishingHouse;
+import proiect.ProiectBiblioteca.exceptions.CityNotFloundException;
 import proiect.ProiectBiblioteca.exceptions.PublishingHouseNotFoundException;
 import proiect.ProiectBiblioteca.mapper.PublishingHouseMapper;
+import proiect.ProiectBiblioteca.repositories.CityRepository;
 import proiect.ProiectBiblioteca.repositories.PublishingHouseRepository;
 
 import java.util.ArrayList;
@@ -14,8 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static proiect.ProiectBiblioteca.constants.ProjectConstants.PUBLISHING_HOUSE_ID_NOT_FOUND;
-import static proiect.ProiectBiblioteca.constants.ProjectConstants.PUBLISHING_HOUSE_NOT_FOUND;
+import static proiect.ProiectBiblioteca.constants.ProjectConstants.*;
 
 @Service
 @RequiredArgsConstructor
@@ -26,10 +28,23 @@ public class PublishingHouseService implements PublishingHouseServiceImpl{
     @Autowired
     private PublishingHouseMapper publishingHouseMapper;
 
+    @Autowired
+    private CityRepository cityRepository;
+
     @Override
     public PublishingHouseDTO addPublishingHouse(PublishingHouseDTO publishingHouseDTO)
     {
-        return publishingHouseMapper.mapToPublishingHouseDTO(publishingHouseRepository.save(publishingHouseMapper.mapToPublishingHouse(publishingHouseDTO)));
+        PublishingHouse publishingHouse = publishingHouseMapper.mapToPublishingHouse(publishingHouseDTO);
+        if(publishingHouseDTO.getCityDTO()!= null)
+        {
+            Optional<City> city = cityRepository.findById(publishingHouseDTO.getCityDTO().getId());
+            if (city.isEmpty())
+            {
+                throw new CityNotFloundException(String.format(CITY_NOT_FOUND,publishingHouse.getCity()));
+            }
+            publishingHouse.setCity(city.get());
+        }
+        return publishingHouseMapper.mapToPublishingHouseDTO(publishingHouseRepository.save(publishingHouse));
     }
 
     @Override

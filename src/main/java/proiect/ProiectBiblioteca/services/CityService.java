@@ -28,23 +28,10 @@ public class CityService implements CityServiceImpl {
     @Autowired
     private CityMapper cityMapper;
 
-    @Autowired
-    private PublishingHouseRepository publishingHouseRepository;
-
     @Override
     public CityDTO addCity(CityDTO cityDTO)
     {
-        City city = cityMapper.mapToCity(cityDTO);
-        if(cityDTO.getPublishingHouseDTO()!=null)
-        {
-            Optional<PublishingHouse> publishingHouse = publishingHouseRepository.findById(cityDTO.getPublishingHouseDTO().getId());
-            if (publishingHouse.isEmpty())
-            {
-                throw new PublishingHouseNotFoundException(String.format(PUBLISHING_HOUSE_NOT_FOUND,city.getPublishingHouse()));
-            }
-            city.setPublishingHouse(publishingHouse.get());
-        }
-        return cityMapper.mapToCityDTO(cityRepository.save(city));
+        return cityMapper.mapToCityDTO(cityRepository.save(cityMapper.mapToCity(cityDTO)));
     }
 
     @Override

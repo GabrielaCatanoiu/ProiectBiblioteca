@@ -12,6 +12,7 @@ import java.util.Optional;
 public interface PublishingHouseRepository extends JpaRepository<PublishingHouse, Long> {
 
     @Override
+    @Query("SELECT P FROM PublishingHouse P WHERE P.id = :id")
     Optional<PublishingHouse> findById(Long id);
 
     @Query("SELECT P FROM PublishingHouse P WHERE P.publishing_name = :publishing_name")

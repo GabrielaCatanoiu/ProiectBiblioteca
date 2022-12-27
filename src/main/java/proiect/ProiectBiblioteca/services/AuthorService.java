@@ -5,17 +5,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proiect.ProiectBiblioteca.dto.AuthorDTO;
 import proiect.ProiectBiblioteca.entity.Author;
+import proiect.ProiectBiblioteca.entity.Book;
 import proiect.ProiectBiblioteca.exceptions.AuthorNotFoundException;
+import proiect.ProiectBiblioteca.exceptions.BookNotFoundException;
 import proiect.ProiectBiblioteca.mapper.AuthorMapper;
 import proiect.ProiectBiblioteca.repositories.AuthorRepository;
+import proiect.ProiectBiblioteca.repositories.BookRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static proiect.ProiectBiblioteca.constants.ProjectConstants.AUTHOR_ID_NOT_FOUND;
-import static proiect.ProiectBiblioteca.constants.ProjectConstants.AUTHOR_NOT_FOUND;
+import static proiect.ProiectBiblioteca.constants.ProjectConstants.*;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +28,7 @@ public class AuthorService implements AuthorServiceImpl{
 
     @Autowired
     private AuthorMapper authorMapper;
+
 
     @Override
     public AuthorDTO addAuthor(AuthorDTO authorDTO)

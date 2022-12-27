@@ -12,4 +12,5 @@ public class PublishingHouseDTO {
 
     private Long id;
     private String publishing_name;
+    private CityDTO cityDTO;
 }
