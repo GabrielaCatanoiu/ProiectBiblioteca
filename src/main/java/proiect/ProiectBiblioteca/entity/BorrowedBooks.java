@@ -21,9 +21,9 @@ public class BorrowedBooks {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinTable(name = "member_borrowedBooks",
+    @JoinTable(name = "member_borrowed_books",
             joinColumns = {
-                    @JoinColumn(name = "borrowedBooks", referencedColumnName = "id")
+                    @JoinColumn(name = "borrowed_books", referencedColumnName = "id")
             },
             inverseJoinColumns = {
                     @JoinColumn(name = "member", referencedColumnName = "id")

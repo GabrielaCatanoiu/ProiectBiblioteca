@@ -14,5 +14,7 @@ public class ProjectConstants {
     public static final String CITY_NOT_FOUND = "No city %s found on the database";
     public static final String CITY_ID_NOT_FOUND = "No city with this id was found";
     public static final String CITY_WAS_DELETED = "City %s was deleted";
-
+    public static final String PUBLISHING_HOUSE_NOT_FOUND = "No publishing house %s found on the database";
+    public static final String PUBLISHING_HOUSE_ID_NOT_FOUND = "No publishing house with this id was found";
+    public static final String PUBLISHING_HOUSE_WAS_DELETED = "Publishing house %s was deleted";
 }

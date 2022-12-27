@@ -69,14 +69,12 @@ public class BorrowedBooksService implements BorrowedBooksServiceImpl{
         if(borrowedBooksDTO.getMemberDTO() != null)
         {
             Optional<Member> member = memberRepository.findById(borrowedBooksDTO.getMemberDTO().getId());
-            System.out.println(member);
             if(member.isEmpty())
             {
                 throw new MemberNotFoundException(String.format(MEMBER_NOT_FOUND,borrowedBooks.getMember()));
             }
             borrowedBooks.setMember(member.get());
         }
-        System.out.println(borrowedBooks);
         return borrowedBooksMapper.mapToBorrowedBooksDTO(borrowedBooksRepository.save(borrowedBooks));
     }
 

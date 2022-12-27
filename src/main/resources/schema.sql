@@ -46,3 +46,21 @@ CREATE TABLE IF NOT EXISTS city (
 
     PRIMARY KEY (id)
 );
+
+CREATE TABLE IF NOT EXISTS publishing_house (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    publishing_name VARCHAR(255) NOT NULL,
+
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS city_publishing_house (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    publishing_house BIGINT NOT NULL,
+    city BIGINT NOT NULL,
+
+
+    PRIMARY KEY (id),
+    FOREIGN KEY (publishing_house) REFERENCES publishing_house(id),
+    FOREIGN KEY (city) REFERENCES city(id)
+);
