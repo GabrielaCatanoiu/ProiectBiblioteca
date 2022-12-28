@@ -1,5 +1,6 @@
 package proiect.ProiectBiblioteca.controllers;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,29 +25,34 @@ public class MemberController {
     private MemberService memberService;
 
     @PostMapping("/add")
+    @ApiOperation("Add information about a new member to the library")
     public ResponseEntity<MemberDTO> addMember(@RequestBody MemberDTO memberDTO)
     {
         return ResponseEntity.ok(memberService.addMember(memberDTO));
     }
 
     @GetMapping("/allMembers")
+    @ApiOperation("Provide a list of all members in the library")
     public ResponseEntity<List<Member>> getMembers()
     {
         return ResponseEntity.ok(memberService.getAllMembers());
     }
 
     @GetMapping("/getByEmail/{email}")
+    @ApiOperation("Search information about a member by email")
     public ResponseEntity<List<MemberDTO>> getMemberByEmail(@PathVariable String email){
         return ResponseEntity.ok(memberService.getByEmail(email));
     }
 
     @GetMapping("/getById/{id}")
+    @ApiOperation("Search information about a member by id")
     public ResponseEntity<Optional<Member>> getMember(@PathVariable Long id)
     {
         return ResponseEntity.ok(memberService.getMember(id));
     }
 
     @DeleteMapping("/deleteMember/{id}")
+    @ApiOperation("Delete a user who has not borrowed books for a long time")
     public ResponseEntity<String> deleteMember(@PathVariable Long id)
     {
         try {
@@ -60,6 +66,7 @@ public class MemberController {
     }
 
     @PutMapping("/update/{id}/{email}")
+    @ApiOperation("Updating a user's email")
     public ResponseEntity<MemberDTO> updateEmailMember(@PathVariable Long id, @PathVariable String email){
         return ResponseEntity.ok(memberService.updateMember(id,email));
     }

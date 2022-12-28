@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS author_book (
 
 CREATE TABLE IF NOT EXISTS literature_category (
     id BIGINT NOT NULL AUTO_INCREMENT,
-    category_name VARCHAR(255) NOT NULL,
+    category_name VARCHAR(255) NOT NULL UNIQUE,
 
     PRIMARY KEY (id)
 );

@@ -1,5 +1,6 @@
 package proiect.ProiectBiblioteca.controllers;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,30 +26,35 @@ public class PublishingHouseController {
     private PublishingHouseService publishingHouseService;
 
     @PostMapping("/add")
+    @ApiOperation("Add a publishing house that launched the book")
     public ResponseEntity<PublishingHouseDTO> addPublishHouse(@RequestBody PublishingHouseDTO publishingHouseDTO)
     {
         return ResponseEntity.ok(publishingHouseService.addPublishingHouse(publishingHouseDTO));
     }
 
     @GetMapping("/all")
+    @ApiOperation("Provide all the publications that collaborate with the library")
     public ResponseEntity<List<PublishingHouse>> getAllPublishHouse()
     {
         return ResponseEntity.ok(publishingHouseService.getAllPublishingHouse());
     }
 
     @GetMapping("/getPublishHouseById/{id}")
+    @ApiOperation("Search for a publication by id")
     public ResponseEntity<Optional<PublishingHouse>> getPublishHouseById(@PathVariable Long id)
     {
         return ResponseEntity.ok(publishingHouseService.getPublishById(id));
     }
 
     @GetMapping("/getPublishHouseByName/{publishing_name:[a-zA-Z ]*}")
+    @ApiOperation("Search for a publication by name")
     public ResponseEntity<List<PublishingHouseDTO>> getPublishHouseByName(@PathVariable String publishing_name)
     {
         return ResponseEntity.ok(publishingHouseService.getPublishByName(publishing_name));
     }
 
     @DeleteMapping("/delete/{id}")
+    @ApiOperation("Delete a publishing house that no longer exists")
     public ResponseEntity<String> deletePublishHouse(@PathVariable Long id)
     {
         try {
