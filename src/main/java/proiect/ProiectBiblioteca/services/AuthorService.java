@@ -21,7 +21,7 @@ import static proiect.ProiectBiblioteca.constants.ProjectConstants.*;
 
 @Service
 @RequiredArgsConstructor
-public class AuthorService implements AuthorServiceImpl{
+public class AuthorService implements AuthorServiceImpl, DeleteServiceImpl{
 
     @Autowired
     private AuthorRepository authorRepository;
@@ -66,7 +66,7 @@ public class AuthorService implements AuthorServiceImpl{
     }
 
     @Override
-    public void deleteAuthor(Long id)
+    public void delete(Long id)
     {
         Optional<Author> authorFound = authorRepository.findById(id);
         if(authorFound.isPresent())

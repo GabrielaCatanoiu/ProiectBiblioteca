@@ -51,7 +51,7 @@ public class AuthorController {
     public ResponseEntity<String> deleteAuthor(@PathVariable Long id)
     {
         try {
-            authorService.deleteAuthor(id);
+            authorService.delete(id);
             return ResponseEntity.ok(String.format(AUTHOR_WAS_DELETED,id));
         }
         catch (AuthorNotFoundException ex)

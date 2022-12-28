@@ -21,4 +21,5 @@ public class ProjectConstants {
     public static final String BOOK_ID_NOT_FOUND = "No book with this id was found";
     public static final String BOOK_WAS_DELETED = "Book %s was deleted";
     public static final String CATEGORY_NOT_FOUND = "No category %s found on the database";
+    public static final String CONDITION_NOT_FOUND = "No book %s, publish %s found on the database";
 }

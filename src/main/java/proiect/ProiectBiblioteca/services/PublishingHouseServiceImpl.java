@@ -12,6 +12,5 @@ public interface PublishingHouseServiceImpl {
     public List<PublishingHouse> getAllPublishingHouse();
     public Optional<PublishingHouse> getPublishById(Long id);
     public List<PublishingHouseDTO> getPublishByName(String publishing_name);
-    public void deletePublising(Long id);
 
 }

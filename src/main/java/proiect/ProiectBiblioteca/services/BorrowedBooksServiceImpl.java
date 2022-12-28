@@ -13,6 +13,5 @@ public interface BorrowedBooksServiceImpl {
     public Optional<BorrowedBooks> getBorrowedBook(Long id);
     public List<BorrowedBooksDTO> getBorrowedBookByDate(String date_due);
     public BorrowedBooksDTO addBorrowedBook(BorrowedBooksDTO borrowedBooksDTO);
-    public void deleteBorrowedBook(Long id);
     public BorrowedBooksDTO updateBorrowedBook(Long id, String newDate_returned);
 }

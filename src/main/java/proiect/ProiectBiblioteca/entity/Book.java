@@ -29,6 +29,17 @@ public class Book {
     )
     private Author author;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinTable(name = "city_publishing_house_book",
+            joinColumns = {
+                    @JoinColumn(name = "book", referencedColumnName = "id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "city_publishing_house", referencedColumnName = "id")
+            }
+    )
+    private PublishingHouse publishingHouse;
+
     @Column(name = "title")
     private String title;
 

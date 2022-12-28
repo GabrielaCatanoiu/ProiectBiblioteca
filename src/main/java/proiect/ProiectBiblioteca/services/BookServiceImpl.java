@@ -12,6 +12,5 @@ public interface BookServiceImpl {
     public List<Book> getAllBooks();
     public Optional<Book> getOneBook(Long id);
     public List<BookDTO> geByTitle(String title);
-    public void deleteBook(Long id);
     public BookDTO updateBookName(Long id, String newTitle);
 }

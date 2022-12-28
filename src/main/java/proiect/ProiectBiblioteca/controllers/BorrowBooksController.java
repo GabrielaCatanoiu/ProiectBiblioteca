@@ -54,7 +54,7 @@ public class BorrowBooksController {
     {
         try
         {
-            borrowedBooksService.deleteBorrowedBook(id);
+            borrowedBooksService.delete(id);
             return ResponseEntity.ok(String.format(BORROWED_BOOK_WAS_DELETED,id));
         }
         catch (BorrowedBookNotFoundException ex)

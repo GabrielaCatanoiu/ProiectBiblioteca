@@ -88,3 +88,13 @@ CREATE TABLE IF NOT EXISTS literature_category (
 
     PRIMARY KEY (id)
 );
+
+CREATE TABLE IF NOT EXISTS city_publishing_house_book (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    book BIGINT NOT NULL,
+    city_publishing_house BIGINT NOT NULL,
+
+    PRIMARY KEY (id),
+    FOREIGN KEY (book) REFERENCES book(id),
+    FOREIGN KEY (city_publishing_house) REFERENCES city_publishing_house(id)
+);

@@ -6,11 +6,15 @@ import org.springframework.stereotype.Service;
 import proiect.ProiectBiblioteca.dto.BookDTO;
 import proiect.ProiectBiblioteca.entity.Author;
 import proiect.ProiectBiblioteca.entity.Book;
+import proiect.ProiectBiblioteca.entity.PublishingHouse;
 import proiect.ProiectBiblioteca.exceptions.AuthorNotFoundException;
 import proiect.ProiectBiblioteca.exceptions.BookNotFoundException;
+import proiect.ProiectBiblioteca.exceptions.ConditionNotFoundException;
+import proiect.ProiectBiblioteca.exceptions.PublishingHouseNotFoundException;
 import proiect.ProiectBiblioteca.mapper.BookMapper;
 import proiect.ProiectBiblioteca.repositories.AuthorRepository;
 import proiect.ProiectBiblioteca.repositories.BookRepository;
+import proiect.ProiectBiblioteca.repositories.PublishingHouseRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +25,7 @@ import static proiect.ProiectBiblioteca.constants.ProjectConstants.*;
 
 @Service
 @RequiredArgsConstructor
-public class BookService implements BookServiceImpl {
+public class BookService implements BookServiceImpl, DeleteServiceImpl {
 
     @Autowired
     private BookMapper bookMapper;
@@ -32,18 +36,23 @@ public class BookService implements BookServiceImpl {
     @Autowired
     private AuthorRepository authorRepository;
 
+    @Autowired
+    private PublishingHouseRepository publishingHouseRepository;
+
     @Override
     public BookDTO addBook(BookDTO bookDTO)
     {
         Book book = bookMapper.mapToBook(bookDTO);
-        if(bookDTO.getAuthorDTO() != null)
+        if((bookDTO.getAuthorDTO() != null) && (bookDTO.getPublishingHouseDTO()!= null))
         {
             Optional<Author> author = authorRepository.findById(bookDTO.getAuthorDTO().getId());
-            if (author.isEmpty())
+            Optional<PublishingHouse> publishingHouse = publishingHouseRepository.findById(bookDTO.getPublishingHouseDTO().getId());
+            if (author.isEmpty() && publishingHouse.isEmpty())
             {
-                throw new AuthorNotFoundException(String.format(AUTHOR_NOT_FOUND,book.getAuthor()));
+                throw new ConditionNotFoundException(String.format(CONDITION_NOT_FOUND,book.getAuthor(),book.getPublishingHouse()));
             }
             book.setAuthor(author.get());
+            book.setPublishingHouse(publishingHouse.get());
         }
         return bookMapper.mapToBookDTO(bookRepository.save(book));
     }
@@ -78,7 +87,7 @@ public class BookService implements BookServiceImpl {
     }
 
     @Override
-    public void deleteBook(Long id)
+    public void delete(Long id)
     {
         Optional<Book> bookFound = bookRepository.findById(id);
         if(bookFound.isPresent())

@@ -52,7 +52,7 @@ public class PublishingHouseController {
     public ResponseEntity<String> deletePublishHouse(@PathVariable Long id)
     {
         try {
-            publishingHouseService.deletePublising(id);
+            publishingHouseService.delete(id);
             return ResponseEntity.ok(String.format(PUBLISHING_HOUSE_WAS_DELETED,id));
         }
         catch (PublishingHouseNotFoundException ex)

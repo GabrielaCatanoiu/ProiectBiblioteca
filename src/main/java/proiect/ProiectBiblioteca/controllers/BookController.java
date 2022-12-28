@@ -52,7 +52,7 @@ public class BookController {
     public ResponseEntity<String> deleteBookById(@PathVariable Long id)
     {
         try {
-            bookService.deleteBook(id);
+            bookService.delete(id);
             return ResponseEntity.ok(String.format(BOOK_WAS_DELETED,id));
         }
         catch (BookNotFoundException ex)

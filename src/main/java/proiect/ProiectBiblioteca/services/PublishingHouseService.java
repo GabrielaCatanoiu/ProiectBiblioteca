@@ -21,7 +21,7 @@ import static proiect.ProiectBiblioteca.constants.ProjectConstants.*;
 
 @Service
 @RequiredArgsConstructor
-public class PublishingHouseService implements PublishingHouseServiceImpl{
+public class PublishingHouseService implements PublishingHouseServiceImpl, DeleteServiceImpl{
 
     @Autowired
     private PublishingHouseRepository publishingHouseRepository;
@@ -77,7 +77,7 @@ public class PublishingHouseService implements PublishingHouseServiceImpl{
     }
 
     @Override
-    public void deletePublising(Long id)
+    public void delete(Long id)
     {
         Optional<PublishingHouse> publishingHouseFound = publishingHouseRepository.findById(id);
         if (publishingHouseFound.isPresent())

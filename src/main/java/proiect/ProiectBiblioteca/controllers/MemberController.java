@@ -50,7 +50,7 @@ public class MemberController {
     public ResponseEntity<String> deleteMember(@PathVariable Long id)
     {
         try {
-            memberService.deleteMember(id);
+            memberService.delete(id);
             return ResponseEntity.ok(String.format(MEMBER_WAS_DELETED, id));
         }
         catch (MemberNotFoundException ex) {

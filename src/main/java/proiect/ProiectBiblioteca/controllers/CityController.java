@@ -45,7 +45,7 @@ public class CityController {
     public ResponseEntity<String> deleteCity(@PathVariable Long id)
     {
         try {
-            cityService.deleteCity(id);
+            cityService.delete(id);
             return ResponseEntity.ok(String.format(CITY_WAS_DELETED,id));
         }
         catch (CityNotFloundException ex)

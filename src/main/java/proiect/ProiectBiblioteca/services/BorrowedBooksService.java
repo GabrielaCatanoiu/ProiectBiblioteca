@@ -22,7 +22,7 @@ import static proiect.ProiectBiblioteca.constants.ProjectConstants.*;
 
 @Service
 @RequiredArgsConstructor
-public class BorrowedBooksService implements BorrowedBooksServiceImpl{
+public class BorrowedBooksService implements BorrowedBooksServiceImpl, DeleteServiceImpl{
 
     @Autowired
     private BorrowedBooksRepository borrowedBooksRepository;
@@ -79,7 +79,7 @@ public class BorrowedBooksService implements BorrowedBooksServiceImpl{
     }
 
     @Override
-    public void deleteBorrowedBook(Long id)
+    public void delete(Long id)
     {
         Optional<BorrowedBooks> borrowedBooksFound = borrowedBooksRepository.findById(id);
         if(borrowedBooksFound.isPresent())

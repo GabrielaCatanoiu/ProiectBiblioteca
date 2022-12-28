@@ -21,7 +21,7 @@ import static proiect.ProiectBiblioteca.constants.ProjectConstants.MEMBER_NOT_FO
 
 @Service
 @RequiredArgsConstructor
-public class MemberService implements MemberServiceImpl{
+public class MemberService implements MemberServiceImpl, DeleteServiceImpl{
 
     @Autowired
     private MemberRepository memberRepository;
@@ -64,7 +64,7 @@ public class MemberService implements MemberServiceImpl{
     }
 
     @Override
-    public void deleteMember(Long id)
+    public void delete(Long id)
     {
         Optional<Member> memberFound = memberRepository.findById(id);
         if(memberFound.isPresent())

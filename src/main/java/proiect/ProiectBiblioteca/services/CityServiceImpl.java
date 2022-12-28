@@ -11,5 +11,4 @@ public interface CityServiceImpl {
     public CityDTO addCity(CityDTO cityDTO);
     public Optional<City> getCity(Long id);
     public List<CityDTO> getCityByName(String city_name);
-    public void deleteCity(Long id);
 }

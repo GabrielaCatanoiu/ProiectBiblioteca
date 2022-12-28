@@ -12,5 +12,4 @@ public interface AuthorServiceImpl {
     public Optional<Author> getAutor(Long id);
     public List<AuthorDTO> getAuthorByNameAndSurname(String author_name, String author_surname);
     public List<Author> getAllAuthors();
-    public void deleteAuthor(Long id);
 }

@@ -20,7 +20,7 @@ import static proiect.ProiectBiblioteca.constants.ProjectConstants.*;
 
 @Service
 @RequiredArgsConstructor
-public class CityService implements CityServiceImpl {
+public class CityService implements CityServiceImpl, DeleteServiceImpl {
 
     @Autowired
     private CityRepository cityRepository;
@@ -53,7 +53,7 @@ public class CityService implements CityServiceImpl {
     }
 
     @Override
-    public void deleteCity(Long id)
+    public void delete(Long id)
     {
         Optional<City> cityFound = cityRepository.findById(id);
         if(cityFound.isPresent())

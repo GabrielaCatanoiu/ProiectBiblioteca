@@ -12,6 +12,5 @@ public interface MemberServiceImpl {
     public List<Member> getAllMembers();
     public List<MemberDTO> getByEmail(String email);
     public Optional<Member> getMember(Long id);
-    public void deleteMember(Long id);
     public MemberDTO updateMember(Long id, String email);
 }
