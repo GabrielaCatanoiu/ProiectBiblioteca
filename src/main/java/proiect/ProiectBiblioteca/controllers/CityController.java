@@ -35,7 +35,7 @@ public class CityController {
         return ResponseEntity.ok(cityService.getCity(id));
     }
 
-    @GetMapping("/getByName/{name}")
+    @GetMapping("/getByName/{name:[a-zA-Z ]*}")
     public ResponseEntity<List<CityDTO>> getByName(@PathVariable String name)
     {
         return ResponseEntity.ok(cityService.getCityByName(name));

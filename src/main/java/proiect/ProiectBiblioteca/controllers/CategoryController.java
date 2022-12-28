@@ -31,7 +31,7 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.getCategory(id));
     }
 
-    @GetMapping("/getByName/{category_name}")
+    @GetMapping("/getByName/{category_name:[a-zA-Z ]*}")
     private ResponseEntity<List<CategoryDTO>> getCategoryByName(@PathVariable String category_name)
     {
         return ResponseEntity.ok(categoryService.getByName(category_name));

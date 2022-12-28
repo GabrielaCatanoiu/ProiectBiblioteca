@@ -42,7 +42,7 @@ public class PublishingHouseController {
         return ResponseEntity.ok(publishingHouseService.getPublishById(id));
     }
 
-    @GetMapping("/getPublishHouseByName/{publishing_name}")
+    @GetMapping("/getPublishHouseByName/{publishing_name:[a-zA-Z ]*}")
     public ResponseEntity<List<PublishingHouseDTO>> getPublishHouseByName(@PathVariable String publishing_name)
     {
         return ResponseEntity.ok(publishingHouseService.getPublishByName(publishing_name));

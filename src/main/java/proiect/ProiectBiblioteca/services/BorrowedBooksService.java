@@ -4,11 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proiect.ProiectBiblioteca.dto.BorrowedBooksDTO;
+import proiect.ProiectBiblioteca.entity.Book;
 import proiect.ProiectBiblioteca.entity.BorrowedBooks;
 import proiect.ProiectBiblioteca.entity.Member;
 import proiect.ProiectBiblioteca.exceptions.BorrowedBookNotFoundException;
 import proiect.ProiectBiblioteca.exceptions.MemberNotFoundException;
 import proiect.ProiectBiblioteca.mapper.BorrowedBooksMapper;
+import proiect.ProiectBiblioteca.repositories.BookRepository;
 import proiect.ProiectBiblioteca.repositories.BorrowedBooksRepository;
 import proiect.ProiectBiblioteca.repositories.MemberRepository;
 
@@ -32,6 +34,9 @@ public class BorrowedBooksService implements BorrowedBooksServiceImpl, DeleteSer
 
     @Autowired
     private MemberRepository memberRepository;
+
+    @Autowired
+    private BookRepository bookRepository;
 
     @Override
     public List<BorrowedBooks> getAllBorrowedBooks()
@@ -66,14 +71,16 @@ public class BorrowedBooksService implements BorrowedBooksServiceImpl, DeleteSer
     public BorrowedBooksDTO addBorrowedBook(BorrowedBooksDTO borrowedBooksDTO)
     {
         BorrowedBooks borrowedBooks = borrowedBooksMapper.mapToBorrowedBooks(borrowedBooksDTO);
-        if(borrowedBooksDTO.getMemberDTO() != null)
+        if((borrowedBooksDTO.getMemberDTO() != null) && (borrowedBooksDTO.getBookDTO() != null))
         {
             Optional<Member> member = memberRepository.findById(borrowedBooksDTO.getMemberDTO().getId());
-            if(member.isEmpty())
+            Optional<Book> book = bookRepository.findById(borrowedBooksDTO.getBookDTO().getId());
+            if(member.isEmpty() && book.isEmpty())
             {
-                throw new MemberNotFoundException(String.format(MEMBER_NOT_FOUND,borrowedBooks.getMember()));
+                throw new BorrowedBookNotFoundException(String.format(BOOK_NOT_FOUND,borrowedBooks.getBook()));
             }
             borrowedBooks.setMember(member.get());
+            borrowedBooks.setBook(book.get());
         }
         return borrowedBooksMapper.mapToBorrowedBooksDTO(borrowedBooksRepository.save(borrowedBooks));
     }

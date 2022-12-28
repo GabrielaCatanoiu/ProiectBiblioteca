@@ -112,9 +112,9 @@ CREATE TABLE IF NOT EXISTS literature_category_book (
 CREATE TABLE IF NOT EXISTS member_borrowed_books_book (
     id BIGINT NOT NULL AUTO_INCREMENT,
     book BIGINT NOT NULL,
-    member_borrowed_books BIGINT NOT NULL,
+    borrowed_books BIGINT NOT NULL,
 
     PRIMARY KEY (id),
     FOREIGN KEY (book) REFERENCES book(id),
-    FOREIGN KEY (member_borrowed_books) REFERENCES member_borrowed_books(id)
+    FOREIGN KEY (borrowed_books) REFERENCES borrowed_books(id)
 );

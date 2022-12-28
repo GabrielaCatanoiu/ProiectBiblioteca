@@ -1,9 +1,7 @@
 package proiect.ProiectBiblioteca.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import proiect.ProiectBiblioteca.validator.OnlyLetters;
 
 import javax.persistence.Column;
 
@@ -14,8 +12,17 @@ import javax.persistence.Column;
 public class AuthorDTO {
 
     private Long id;
+
+    @NonNull
+    @OnlyLetters
     private String author_name;
+
+    @NonNull
+    @OnlyLetters
     private String author_surname;
+
+    @NonNull
     private String date_birth;
+
     private String date_death;
 }

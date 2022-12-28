@@ -1,9 +1,7 @@
 package proiect.ProiectBiblioteca.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import proiect.ProiectBiblioteca.validator.OnlyLetters;
 
 import javax.persistence.Column;
 
@@ -14,7 +12,16 @@ import javax.persistence.Column;
 public class CityDTO {
 
     private Long id;
+
+    @NonNull
+    @OnlyLetters
     private String city_name;
+
+    @NonNull
+    @OnlyLetters
     private String country;
+
+    @NonNull
+    @OnlyLetters
     private String  district;
 }

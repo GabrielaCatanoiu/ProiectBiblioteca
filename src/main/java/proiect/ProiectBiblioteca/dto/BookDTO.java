@@ -1,9 +1,6 @@
 package proiect.ProiectBiblioteca.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Column;
 
@@ -14,8 +11,13 @@ import javax.persistence.Column;
 public class BookDTO {
 
     private Long id;
+
+    @NonNull
     private String title;
+
+    @NonNull
     private String year_published;
+
     private AuthorDTO authorDTO;
     private PublishingHouseDTO publishingHouseDTO;
     private CategoryDTO categoryDTO;

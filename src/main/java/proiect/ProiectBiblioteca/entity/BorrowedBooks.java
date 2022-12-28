@@ -31,6 +31,17 @@ public class BorrowedBooks {
     )
     private Member member;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinTable(name = "member_borrowed_books_book",
+            joinColumns = {
+                    @JoinColumn(name = "borrowed_books", referencedColumnName = "id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "book", referencedColumnName = "id")
+            }
+    )
+    private Book book;
+
     @Column(name = "date_due")
     private String date_due;
 

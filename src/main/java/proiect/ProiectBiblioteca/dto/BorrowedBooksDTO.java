@@ -13,8 +13,13 @@ import java.util.Date;
 public class BorrowedBooksDTO {
 
     private Long id;
-    private String date_due;
-    private String date_returned;
-    private MemberDTO memberDTO;
 
+    @NonNull
+    private String date_due;
+
+    @NonNull
+    private String date_returned;
+
+    private MemberDTO memberDTO;
+    private BookDTO bookDTO;
 }

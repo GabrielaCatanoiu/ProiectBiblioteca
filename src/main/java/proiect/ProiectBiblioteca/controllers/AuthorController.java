@@ -35,7 +35,7 @@ public class AuthorController {
         return ResponseEntity.ok(authorService.getAutor(id));
     }
 
-    @GetMapping("/getByNameAndSurname/{name}/{surname}")
+    @GetMapping("/getByNameAndSurname/{name:[a-zA-Z ]*}/{surname:[a-zA-Z ]*}")
     public ResponseEntity<List<AuthorDTO>> getByNameAndSurname(@PathVariable String name, @PathVariable String surname)
     {
         return ResponseEntity.ok(authorService.getAuthorByNameAndSurname(name,surname));
