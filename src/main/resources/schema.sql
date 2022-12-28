@@ -98,3 +98,23 @@ CREATE TABLE IF NOT EXISTS city_publishing_house_book (
     FOREIGN KEY (book) REFERENCES book(id),
     FOREIGN KEY (city_publishing_house) REFERENCES city_publishing_house(id)
 );
+
+CREATE TABLE IF NOT EXISTS literature_category_book (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    book BIGINT NOT NULL,
+    literature_category BIGINT NOT NULL,
+
+    PRIMARY KEY (id),
+    FOREIGN KEY (book) REFERENCES book(id),
+    FOREIGN KEY (literature_category) REFERENCES literature_category(id)
+);
+
+CREATE TABLE IF NOT EXISTS member_borrowed_books_book (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    book BIGINT NOT NULL,
+    member_borrowed_books BIGINT NOT NULL,
+
+    PRIMARY KEY (id),
+    FOREIGN KEY (book) REFERENCES book(id),
+    FOREIGN KEY (member_borrowed_books) REFERENCES member_borrowed_books(id)
+);

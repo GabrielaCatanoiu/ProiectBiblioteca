@@ -14,9 +14,12 @@ public class BookMapper {
     @Autowired
     private PublishingHouseMapper publishingHouseMapper;
 
+    @Autowired
+    private CategoryMapper categoryMapper;
+
     public Book mapToBook(BookDTO bookDTO)
     {
-        if((bookDTO.getAuthorDTO()!= null) && (bookDTO.getPublishingHouseDTO()!=null))
+        if((bookDTO.getAuthorDTO()!=null) && (bookDTO.getPublishingHouseDTO()!=null) && (bookDTO.getCategoryDTO()!=null))
         {
             return Book.builder()
                     .id(bookDTO.getId())
@@ -24,6 +27,7 @@ public class BookMapper {
                     .year_published(bookDTO.getYear_published())
                     .author(authorMapper.mapToAuthor(bookDTO.getAuthorDTO()))
                     .publishingHouse(publishingHouseMapper.mapToPublishingHouse(bookDTO.getPublishingHouseDTO()))
+                    .category(categoryMapper.mapToCategory(bookDTO.getCategoryDTO()))
                     .build();
         }
         else
@@ -39,7 +43,7 @@ public class BookMapper {
 
     public BookDTO mapToBookDTO(Book book)
     {
-        if((book.getAuthor() != null) && (book.getPublishingHouse()!=null))
+        if((book.getAuthor()!=null) && (book.getPublishingHouse()!=null) && (book.getCategory()!=null))
         {
             return BookDTO.builder()
                     .id(book.getId())
@@ -47,6 +51,7 @@ public class BookMapper {
                     .year_published(book.getYear_published())
                     .authorDTO(authorMapper.mapToAuthorDTO(book.getAuthor()))
                     .publishingHouseDTO(publishingHouseMapper.mapToPublishingHouseDTO(book.getPublishingHouse()))
+                    .categoryDTO(categoryMapper.mapToCategoryDTO(book.getCategory()))
                     .build();
         }
        else
