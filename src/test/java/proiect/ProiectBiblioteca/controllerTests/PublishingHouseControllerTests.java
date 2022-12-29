@@ -98,7 +98,7 @@ public class PublishingHouseControllerTests {
     }
 
     @Test
-    public void ggetPublishHouseByNameTest() throws Exception {
+    public void getPublishHouseByNameTest() throws Exception {
 
         //GIVEN
         publishingHouseDTO = PublishingHouseMocks.mockPublishingHouseDTO();
