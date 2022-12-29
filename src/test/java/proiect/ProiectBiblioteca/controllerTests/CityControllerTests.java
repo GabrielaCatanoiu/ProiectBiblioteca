@@ -10,11 +10,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import proiect.ProiectBiblioteca.controllers.CityController;
 import proiect.ProiectBiblioteca.dto.CityDTO;
-import proiect.ProiectBiblioteca.dto.MemberDTO;
 import proiect.ProiectBiblioteca.entity.City;
 import proiect.ProiectBiblioteca.services.CityService;
 import proiect.ProiectBiblioteca.utils.CityMocks;
-import proiect.ProiectBiblioteca.utils.MemberMocks;
 
 import java.util.ArrayList;
 import java.util.List;
