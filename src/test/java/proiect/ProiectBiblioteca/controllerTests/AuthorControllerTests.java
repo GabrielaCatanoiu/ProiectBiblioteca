@@ -115,7 +115,7 @@ public class AuthorControllerTests {
     }
 
     @Test
-    public void deleteAuthor() throws Exception{
+    public void deleteAuthorTest() throws Exception{
 
         //GIVEN
         authorDTO = AuthorMocks.mockAuthorDTO();

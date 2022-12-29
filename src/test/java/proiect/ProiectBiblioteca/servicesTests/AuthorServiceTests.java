@@ -159,6 +159,7 @@ public class AuthorServiceTests {
     @Test
     public void testDeleteException(){
 
+        //GIVEN
         author = null;
 
         //WHEN
