@@ -108,11 +108,8 @@ public class MemberServiceTests {
     public void testMemberException() {
         //GIVEN
         member = null;
-        memberDTO = null;
 
         List<Member> members = new ArrayList<>();
-
-        List<MemberDTO> memberDTOS = new ArrayList<>();
 
         //WHEN
         when(memberRepository.findMemberByEmail("ciucaalexandru@gmail.com")).thenReturn(members);

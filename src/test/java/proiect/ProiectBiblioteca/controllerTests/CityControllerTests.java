@@ -23,7 +23,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static proiect.ProiectBiblioteca.constants.ProjectConstants.CITY_WAS_DELETED;
-import static proiect.ProiectBiblioteca.constants.ProjectConstants.MEMBER_WAS_DELETED;
 
 @ExtendWith(MockitoExtension.class)
 @WebMvcTest(controllers = CityController.class)
