@@ -86,7 +86,7 @@ public class BorrowedBooksService implements BorrowedBooksServiceImpl, DeleteSer
     }
 
     @Override
-    public void delete(Long id)
+    public boolean delete(Long id)
     {
         Optional<BorrowedBooks> borrowedBooksFound = borrowedBooksRepository.findById(id);
         if(borrowedBooksFound.isPresent())
@@ -97,6 +97,7 @@ public class BorrowedBooksService implements BorrowedBooksServiceImpl, DeleteSer
         {
             throw new BorrowedBookNotFoundException(String.format(BORROWED_BOOK_ID_NOT_FOUND,id));
         }
+        return true;
     }
 
     @Override

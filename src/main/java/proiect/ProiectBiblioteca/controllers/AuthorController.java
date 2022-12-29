@@ -25,7 +25,6 @@ public class AuthorController {
     private AuthorService authorService;
 
     @PostMapping("/add")
-    @ApiOperation("Add a new author and information about him")
     public ResponseEntity<AuthorDTO> addAuthor(@RequestBody AuthorDTO authorDTO)
     {
         return ResponseEntity.ok(authorService.addAuthor(authorDTO));

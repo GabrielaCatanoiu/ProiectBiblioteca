@@ -53,7 +53,7 @@ public class CityService implements CityServiceImpl, DeleteServiceImpl {
     }
 
     @Override
-    public void delete(Long id)
+    public boolean delete(Long id)
     {
         Optional<City> cityFound = cityRepository.findById(id);
         if(cityFound.isPresent())
@@ -64,5 +64,6 @@ public class CityService implements CityServiceImpl, DeleteServiceImpl {
         {
             throw new CityNotFloundException(String.format(CITY_ID_NOT_FOUND,id));
         }
+        return true;
     }
 }

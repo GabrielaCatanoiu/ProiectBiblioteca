@@ -77,7 +77,7 @@ public class PublishingHouseService implements PublishingHouseServiceImpl, Delet
     }
 
     @Override
-    public void delete(Long id)
+    public boolean delete(Long id)
     {
         Optional<PublishingHouse> publishingHouseFound = publishingHouseRepository.findById(id);
         if (publishingHouseFound.isPresent())
@@ -88,6 +88,7 @@ public class PublishingHouseService implements PublishingHouseServiceImpl, Delet
         {
             throw new PublishingHouseNotFoundException(String.format(PUBLISHING_HOUSE_ID_NOT_FOUND,id));
         }
+        return true;
     }
 
 }

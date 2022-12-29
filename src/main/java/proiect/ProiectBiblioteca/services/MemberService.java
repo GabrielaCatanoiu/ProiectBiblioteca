@@ -64,7 +64,7 @@ public class MemberService implements MemberServiceImpl, DeleteServiceImpl{
     }
 
     @Override
-    public void delete(Long id)
+    public boolean delete(Long id)
     {
         Optional<Member> memberFound = memberRepository.findById(id);
         if(memberFound.isPresent())
@@ -75,6 +75,7 @@ public class MemberService implements MemberServiceImpl, DeleteServiceImpl{
         {
             throw new MemberNotFoundException(String.format(MEMBER_ID_NOT_FOUND,id));
         }
+        return true;
     }
 
     @Override

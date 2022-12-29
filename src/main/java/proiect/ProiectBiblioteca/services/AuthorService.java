@@ -66,7 +66,7 @@ public class AuthorService implements AuthorServiceImpl, DeleteServiceImpl{
     }
 
     @Override
-    public void delete(Long id)
+    public boolean delete(Long id)
     {
         Optional<Author> authorFound = authorRepository.findById(id);
         if(authorFound.isPresent())
@@ -77,5 +77,6 @@ public class AuthorService implements AuthorServiceImpl, DeleteServiceImpl{
         {
             throw new AuthorNotFoundException(String.format(AUTHOR_ID_NOT_FOUND,id));
         }
+        return true;
     }
 }

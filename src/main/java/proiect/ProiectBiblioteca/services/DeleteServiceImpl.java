@@ -3,5 +3,5 @@ package proiect.ProiectBiblioteca.services;
 public interface DeleteServiceImpl {
 
     // library si category
-    public void delete(Long id);
+    public boolean delete(Long id);
 }

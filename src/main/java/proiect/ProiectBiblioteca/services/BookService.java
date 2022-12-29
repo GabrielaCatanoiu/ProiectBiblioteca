@@ -95,7 +95,7 @@ public class BookService implements BookServiceImpl, DeleteServiceImpl {
     }
 
     @Override
-    public void delete(Long id)
+    public boolean delete(Long id)
     {
         Optional<Book> bookFound = bookRepository.findById(id);
         if(bookFound.isPresent())
@@ -106,6 +106,7 @@ public class BookService implements BookServiceImpl, DeleteServiceImpl {
         {
             throw new BookNotFoundException(String.format(BOOK_ID_NOT_FOUND,id));
         }
+        return true;
     }
 
     @Override
