@@ -58,16 +58,8 @@ public class BorrowBooksController {
     @ApiOperation("Delete the data about a certain borrowed book")
     public ResponseEntity<String> deleteBorrowedBook(@PathVariable Long id)
     {
-        try
-        {
-            borrowedBooksService.delete(id);
-            return ResponseEntity.ok(String.format(BORROWED_BOOK_WAS_DELETED,id));
-        }
-        catch (BorrowedBookNotFoundException ex)
-        {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(String.format(BORROWED_BOOK_NOT_FOUND, id));
-        }
+        borrowedBooksService.delete(id);
+        return ResponseEntity.ok(String.format(BORROWED_BOOK_WAS_DELETED,id));
     }
 
     @PutMapping("/update/{id}/{date_returned}")

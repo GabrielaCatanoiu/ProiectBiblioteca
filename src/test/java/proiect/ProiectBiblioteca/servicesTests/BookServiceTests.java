@@ -24,6 +24,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import static proiect.ProiectBiblioteca.constants.ProjectConstants.*;
 
@@ -174,7 +175,7 @@ public class BookServiceTests {
         assertEquals(String.format(BOOK_ID_NOT_FOUND, 1L), bookNotFoundException.getMessage());
     }
 
-    /*@Test
+    @Test
     public void testAddBook(){
 
         //GIVEN
@@ -183,9 +184,9 @@ public class BookServiceTests {
 
         //WHEN
         when(bookMapper.mapToBook(bookDTO)).thenReturn(book);
-        when(authorRepository.findById(bookDTO.getAuthorDTO().getId())).thenReturn(Optional.ofNullable(author));
-        when(publishingHouseRepository.findById(bookDTO.getPublishingHouseDTO().getId())).thenReturn(Optional.ofNullable(publishingHouse));
-        when(categoryRepository.findById(bookDTO.getCategoryDTO().getId())).thenReturn(Optional.ofNullable(category));
+        when(authorRepository.findById(bookDTO.getAuthorDTO().getId())).thenReturn(Optional.ofNullable(book.getAuthor()));
+        when(publishingHouseRepository.findById(bookDTO.getPublishingHouseDTO().getId())).thenReturn(Optional.ofNullable(book.getPublishingHouse()));
+        when(categoryRepository.findById(bookDTO.getCategoryDTO().getId())).thenReturn(Optional.ofNullable(book.getCategory()));
 
         when(bookRepository.save(book)).thenReturn(book);
         when(bookMapper.mapToBookDTO(book)).thenReturn(bookDTO);
@@ -194,9 +195,9 @@ public class BookServiceTests {
         BookDTO result = bookService.addBook(bookDTO);
 
         //THEN
-        assertTrue(result.getTitle().equals(bookDTO.getTitle()));
-        assertThat(result.getTitle()).isNotNull();
+        assertTrue(result.getAuthorDTO().getAuthor_name().equals(bookDTO.getAuthorDTO().getAuthor_name()));
+        assertThat(result.getAuthorDTO().getAuthor_name()).isNotNull();
         assertNotNull(result);
         verifyNoMoreInteractions(bookRepository,bookMapper);
-    }*/
+    }
 }

@@ -55,14 +55,8 @@ public class MemberController {
     @ApiOperation("Delete a user who has not borrowed books for a long time")
     public ResponseEntity<String> deleteMember(@PathVariable Long id)
     {
-        try {
-            memberService.delete(id);
-            return ResponseEntity.ok(String.format(MEMBER_WAS_DELETED, id));
-        }
-        catch (MemberNotFoundException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(String.format(MEMBER_ID_NOT_FOUND, id));
-        }
+        memberService.delete(id);
+        return ResponseEntity.ok(String.format(MEMBER_WAS_DELETED, id));
     }
 
     @PutMapping("/update/{id}/{email}")

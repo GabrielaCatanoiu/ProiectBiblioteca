@@ -37,6 +37,15 @@ public class BorrowedBooksMocks {
                                 .category_name("Fantasy")
                                 .build())
                         .build())
+                .member(Member.builder()
+                        .id(1L)
+                        .m_name("Ciurea")
+                        .surname("Alexandru")
+                        .address("Str.Nicolae Cosbuc nr.6, bl.C3, sc.B")
+                        .city("Craiova")
+                        .email("ciureaalaxandru@gamil.com")
+                        .phone("0778965332")
+                        .build())
                 .build();
     }
 
@@ -71,6 +80,15 @@ public class BorrowedBooksMocks {
                                 .id(1L)
                                 .category_name("Fantasy")
                                 .build())
+                        .build())
+                .memberDTO(MemberDTO.builder()
+                        .id(1L)
+                        .m_name("Ciurea")
+                        .surname("Alexandru")
+                        .address("Str.Nicolae Cosbuc nr.6, bl.C3, sc.B")
+                        .city("Craiova")
+                        .email("ciureaalaxandru@gamil.com")
+                        .phone("0778965332")
                         .build())
                 .build();
     }

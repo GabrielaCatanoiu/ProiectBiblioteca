@@ -10,13 +10,12 @@ import proiect.ProiectBiblioteca.dto.BookDTO;
 import proiect.ProiectBiblioteca.dto.BorrowedBooksDTO;
 import proiect.ProiectBiblioteca.entity.Book;
 import proiect.ProiectBiblioteca.entity.BorrowedBooks;
-import proiect.ProiectBiblioteca.exceptions.BookNotFoundException;
 import proiect.ProiectBiblioteca.exceptions.BorrowedBookNotFoundException;
 import proiect.ProiectBiblioteca.mapper.BorrowedBooksMapper;
 import proiect.ProiectBiblioteca.repositories.BookRepository;
 import proiect.ProiectBiblioteca.repositories.BorrowedBooksRepository;
+import proiect.ProiectBiblioteca.repositories.MemberRepository;
 import proiect.ProiectBiblioteca.services.BorrowedBooksService;
-import proiect.ProiectBiblioteca.utils.BookMocks;
 import proiect.ProiectBiblioteca.utils.BorrowedBooksMocks;
 
 import java.util.ArrayList;
@@ -44,6 +43,9 @@ public class BorrowedBooksServiceTests {
 
     @Mock
     BookRepository bookRepository;
+
+    @Mock
+    MemberRepository memberRepository;
 
     BorrowedBooks borrowedBooks;
     BorrowedBooksDTO borrowedBooksDTO;
@@ -158,7 +160,7 @@ public class BorrowedBooksServiceTests {
         assertEquals(String.format(BORROWED_BOOK_ID_NOT_FOUND, 1L), borrowedBookNotFoundException.getMessage());
     }
 
-   /* @Test
+    @Test
     public void testAddBorrowedBooks(){
 
         //GIVEN
@@ -167,7 +169,8 @@ public class BorrowedBooksServiceTests {
 
         //WHEN
         when(borrowedBooksMapper.mapToBorrowedBooks(borrowedBooksDTO)).thenReturn(borrowedBooks);
-        when(bookRepository.findById(borrowedBooksDTO.getBookDTO().getId())).thenReturn(Optional.ofNullable(book));
+        when(bookRepository.findById(borrowedBooksDTO.getBookDTO().getId())).thenReturn(Optional.ofNullable(borrowedBooks.getBook()));
+        when(memberRepository.findById(borrowedBooks.getMember().getId())).thenReturn(Optional.ofNullable(borrowedBooks.getMember()));
 
         when(borrowedBooksRepository.save(borrowedBooks)).thenReturn(borrowedBooks);
         when(borrowedBooksMapper.mapToBorrowedBooksDTO(borrowedBooks)).thenReturn(borrowedBooksDTO);
@@ -176,9 +179,9 @@ public class BorrowedBooksServiceTests {
         BorrowedBooksDTO result = borrowedBooksService.addBorrowedBook(borrowedBooksDTO);
 
         //THEN
-        assertTrue(result.getDate_returned().equals(borrowedBooksDTO.getDate_returned()));
-        assertThat(result.getDate_due()).isNotNull();
+        assertTrue(result.getMemberDTO().getEmail().equals(borrowedBooksDTO.getMemberDTO().getEmail()));
+        assertThat(result.getMemberDTO().getPhone()).isNotNull();
         assertNotNull(result);
         verifyNoMoreInteractions(borrowedBooksRepository,borrowedBooksMapper);
-    }*/
+    }
 }

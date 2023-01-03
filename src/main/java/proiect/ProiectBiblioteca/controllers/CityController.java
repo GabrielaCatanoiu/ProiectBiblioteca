@@ -49,14 +49,7 @@ public class CityController {
     @ApiOperation("Delete a city where that publishing house no longer exists")
     public ResponseEntity<String> deleteCity(@PathVariable Long id)
     {
-        try {
-            cityService.delete(id);
-            return ResponseEntity.ok(String.format(CITY_WAS_DELETED,id));
-        }
-        catch (CityNotFloundException ex)
-        {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(String.format(CITY_ID_NOT_FOUND, id));
-        }
+        cityService.delete(id);
+        return ResponseEntity.ok(String.format(CITY_WAS_DELETED,id));
     }
 }

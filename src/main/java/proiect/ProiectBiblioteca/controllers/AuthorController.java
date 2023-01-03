@@ -55,14 +55,7 @@ public class AuthorController {
     @ApiOperation("Remove an author from the library")
     public ResponseEntity<String> deleteAuthor(@PathVariable Long id)
     {
-        try {
-            authorService.delete(id);
-            return ResponseEntity.ok(String.format(AUTHOR_WAS_DELETED,id));
-        }
-        catch (AuthorNotFoundException ex)
-        {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(String.format(AUTHOR_ID_NOT_FOUND, id));
-        }
+        authorService.delete(id);
+        return ResponseEntity.ok(String.format(AUTHOR_WAS_DELETED,id));
     }
 }

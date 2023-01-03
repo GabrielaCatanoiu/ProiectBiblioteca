@@ -23,6 +23,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import static proiect.ProiectBiblioteca.constants.ProjectConstants.PUBLISHING_HOUSE_NOT_FOUND;
 
@@ -135,7 +136,7 @@ public class PublishingHouseServiceTests {
         assertTrue(result);
     }
 
- /*   @Test
+    @Test
     public void testAddPublishingHouse(){
 
         //GIVEN
@@ -144,7 +145,7 @@ public class PublishingHouseServiceTests {
 
         //WHEN
         when(publishingHouseMapper.mapToPublishingHouse(publishingHouseDTO)).thenReturn(publishingHouse);
-        when(cityRepository.findById(publishingHouseDTO.getCityDTO().getId())).thenReturn(Optional.ofNullable(city));
+        when(cityRepository.findById(publishingHouseDTO.getCityDTO().getId())).thenReturn(Optional.ofNullable(publishingHouse.getCity()));
 
         when(publishingHouseRepository.save(publishingHouse)).thenReturn(publishingHouse);
         when(publishingHouseMapper.mapToPublishingHouseDTO(publishingHouse)).thenReturn(publishingHouseDTO);
@@ -157,5 +158,5 @@ public class PublishingHouseServiceTests {
         assertThat(result.getPublishing_name()).isNotNull();
         assertNotNull(result);
         verifyNoMoreInteractions(publishingHouseRepository,publishingHouseMapper);
-    }*/
+    }
 }

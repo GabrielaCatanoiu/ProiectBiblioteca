@@ -57,14 +57,7 @@ public class PublishingHouseController {
     @ApiOperation("Delete a publishing house that no longer exists")
     public ResponseEntity<String> deletePublishHouse(@PathVariable Long id)
     {
-        try {
-            publishingHouseService.delete(id);
-            return ResponseEntity.ok(String.format(PUBLISHING_HOUSE_WAS_DELETED,id));
-        }
-        catch (PublishingHouseNotFoundException ex)
-        {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(String.format(PUBLISHING_HOUSE_NOT_FOUND,id));
-        }
+        publishingHouseService.delete(id);
+        return ResponseEntity.ok(String.format(PUBLISHING_HOUSE_WAS_DELETED,id));
     }
 }

@@ -57,15 +57,8 @@ public class BookController {
     @ApiOperation("Remove a book from the library")
     public ResponseEntity<String> deleteBookById(@PathVariable Long id)
     {
-        try {
-            bookService.delete(id);
-            return ResponseEntity.ok(String.format(BOOK_WAS_DELETED,id));
-        }
-        catch (BookNotFoundException ex)
-        {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(String.format(BOOK_ID_NOT_FOUND,id));
-        }
+        bookService.delete(id);
+        return ResponseEntity.ok(String.format(BOOK_WAS_DELETED,id));
     }
 
     @PutMapping("/update/{id}/{title}")
